@@ -1,0 +1,56 @@
+<% include partials/header %>
+    <h1>Add a Product</h1>
+    <% if(errors != undefined) { %>
+        <ul>
+        <% errors.forEach(function(error){ %>
+            <li><%= error.msg %></li>
+        <% }) %>
+        </ul>
+    <% } %>
+    <form method="POST" action="/products/add">
+        <label>Title</label>
+        <br>
+        <input type="text" name="title">
+        <br>
+        <label>Price</label>
+        <br>
+        <input type="text" name="price">
+        <br>
+        <textarea placeholder="Please, enter in an product description" name="summary" rows="5" cols="60"></textarea>
+        <br>
+        <label>Date</label>
+        <br>
+        <input type="text" value="<%= new Date() %>" name="date" disabled>
+        <br>
+        <label>User ID</label>
+        <br>
+        <input type="text" name="userid">
+        <br>
+        <label>User Name</label>
+        <br>
+        <input type="text" name="username">
+        <br>
+        <select name="category">
+            <option value="TV">Television</option>
+            <option value="Car">Car</option>
+        </select>
+        <br>
+        <label>Image</label>
+        <br>
+        <input type="text" name="img">
+        <br><br>
+        <input class="submit-button" type="submit" value="Submit">
+    </form>
+    <h1><%= title %></h1>
+    <div class="wrapper">
+    <% products.forEach(function(product){ %>
+        <div class="product"><img src="<%= product.img %>"> <aside class="title"><%= product.title %></aside> - <a href="#" class="deleteCustomer" data-id="<%= product._id %>">Delete Product</a> - <br>
+            <aside class="price"><%= product.price %>$ </aside>
+            <article><%= product.summary %> </article>
+            <aside>Date Posted: <%= product.date_posted %></aside>
+            <aside>User: <%= product.user_name %></aside>
+            <aside>Category: <a class="individualCategory" href="#" data-id="<%= product.category %>"><%= product.category %></a> </aside>
+        </div>
+    <% }) %>
+    </div>
+<% include partials/footer %>

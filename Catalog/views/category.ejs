@@ -1,0 +1,15 @@
+<% include partials/header %>
+    <h1>Individual Category Page</h1>
+    <h1><%= title %></h1>
+    <div class="wrapper">
+    <% products.forEach(function(product){ %>
+        <div class="product"><img src="<%= product.img %>"> <aside class="title"><%= product.title %></aside> - <a href="#" class="deleteCustomer" data-id="<%= product._id %>">Delete Product</a> - <br>
+            <aside class="price"><%= product.price %>$ </aside>
+            <article><%= product.summary %> </article>
+            <aside>Date Posted: <%= product.date_posted %></aside>
+            <aside>User: <%= product.user_name %></aside>
+            <aside>Category: <a class="individualCategory" href="#" data-id="<%= product.category %>"><%= product.category %></a> </aside>
+        </div>
+    <% }) %>
+    </div>
+<% include partials/footer %>
